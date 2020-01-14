@@ -18,8 +18,11 @@ public class PlaceServiceImpl implements PlaceService, Message {
 
     private final DaoCRUD<Place> daoCRUD;
 
+    private final PlaceDaoImpl placeDao;
+
     public PlaceServiceImpl() {
         daoCRUD = new PlaceDaoImpl();
+        placeDao = new PlaceDaoImpl();
     }
 
     @Override
@@ -67,7 +70,7 @@ public class PlaceServiceImpl implements PlaceService, Message {
 
     @Override
     public List<PlaceDto> getByTemplate(String template) {
-        PlaceDaoImpl placeDao = new PlaceDaoImpl();
+
         List<Place> list = placeDao.getByTemplate(template);
 
         List<PlaceDto> placeDtoList = list.stream()
