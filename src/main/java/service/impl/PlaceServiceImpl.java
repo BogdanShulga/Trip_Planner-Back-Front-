@@ -19,13 +19,13 @@ public class PlaceServiceImpl implements PlaceService, Message {
     private final DaoCRUD<Place> daoCRUD;
 
     public PlaceServiceImpl() {
-        daoCRUD= new PlaceDaoImpl();
+        daoCRUD = new PlaceDaoImpl();
     }
 
     @Override
     public PlaceDto getById(Long id) {
-        Place place= daoCRUD.getById(id)
-                .orElseThrow(()->new NotFoundException(String.format(PLACE_NOT_FOUND_EXCEPTION_MESSAGE,id)));
+        Place place = daoCRUD.getById(id)
+                .orElseThrow(() -> new NotFoundException(String.format(PLACE_NOT_FOUND_EXCEPTION_MESSAGE, id)));
 
         return PlaceMapper.getPlaceDto(place);
     }
@@ -33,7 +33,7 @@ public class PlaceServiceImpl implements PlaceService, Message {
     @Override
     public PlaceDto getByField(String text) {
         Place place = daoCRUD.getByField(text)
-                .orElseThrow(()-> new NotFoundException(String.format(PLACENAME_NOT_FOUND_EXCEPTION_MESSAGE,text)));
+                .orElseThrow(() -> new NotFoundException(String.format(PLACENAME_NOT_FOUND_EXCEPTION_MESSAGE, text)));
 
         return PlaceMapper.getPlaceDto(place);
     }
@@ -42,44 +42,47 @@ public class PlaceServiceImpl implements PlaceService, Message {
     public List<PlaceDto> getAll() {
         List<Place> list = daoCRUD.getAll();
 
-        List<PlaceDto>placeDtoList= list.stream()
+        List<PlaceDto> placeDtoList = list.stream()
                 .map(PlaceMapper::getPlaceDto)
                 .collect(Collectors.toList());
-        if (placeDtoList.isEmpty()){
+        if (placeDtoList.isEmpty()) {
             throw new NotFoundException(EMPTY_PLACE_LIST_EXCEPTION_MESSAGE);
-        } return placeDtoList;
+        }
+        return placeDtoList;
     }
 
     @Override
     public List<PlaceDto> getAllLimit() {
-        List<Place> list=daoCRUD.getAllLimit();
+        List<Place> list = daoCRUD.getAllLimit();
 
-        List<PlaceDto>placeDtoList= list.stream()
+        List<PlaceDto> placeDtoList = list.stream()
                 .map(PlaceMapper::getPlaceDto)
                 .collect(Collectors.toList());
 
-        if (placeDtoList.isEmpty()){
+        if (placeDtoList.isEmpty()) {
             throw new NotFoundException(EMPTY_PLACE_LIST_EXCEPTION_MESSAGE);
-        } return placeDtoList;
+        }
+        return placeDtoList;
     }
 
     @Override
     public List<PlaceDto> getByTemplate(String template) {
-        PlaceDaoImpl placeDao=new PlaceDaoImpl();
-        List<Place> list=placeDao.getByTemplate(template);
+        PlaceDaoImpl placeDao = new PlaceDaoImpl();
+        List<Place> list = placeDao.getByTemplate(template);
 
-        List<PlaceDto>placeDtoList= list.stream()
+        List<PlaceDto> placeDtoList = list.stream()
                 .map(PlaceMapper::getPlaceDto)
                 .collect(Collectors.toList());
 
-        if (placeDtoList.isEmpty()){
+        if (placeDtoList.isEmpty()) {
             throw new NotFoundException(EMPTY_PLACE_LIST_EXCEPTION_MESSAGE);
-        } return placeDtoList;
+        }
+        return placeDtoList;
     }
 
     @Override
     public boolean insert(Place place) {
-        if (daoCRUD.insert(place)){
+        if (daoCRUD.insert(place)) {
             return true;
         } else {
             throw new NotFoundException(CREATE_PLACE_EXCEPTION_MESSAGE);
@@ -88,7 +91,7 @@ public class PlaceServiceImpl implements PlaceService, Message {
 
     @Override
     public boolean updateByEntity(Place place) {
-        if (daoCRUD.updateByEntity(place)){
+        if (daoCRUD.updateByEntity(place)) {
             return true;
         } else {
             throw new NotFoundException(UPDATE_PLACE_EXCEPTION_MESSAGE);
@@ -97,7 +100,7 @@ public class PlaceServiceImpl implements PlaceService, Message {
 
     @Override
     public boolean updateByField(String text, String textCondition) {
-        if (daoCRUD.updateByField(text, textCondition)){
+        if (daoCRUD.updateByField(text, textCondition)) {
             return true;
         } else {
             throw new NotFoundException(UPDATE_PLACE_EXCEPTION_MESSAGE);
@@ -106,7 +109,7 @@ public class PlaceServiceImpl implements PlaceService, Message {
 
     @Override
     public boolean deleteById(Long id) {
-        if(daoCRUD.deleteById(id)){
+        if (daoCRUD.deleteById(id)) {
             return true;
         } else {
             throw new NotFoundException(DELETE_PLACE_EXCEPTION_MESSAGE);
@@ -120,7 +123,7 @@ public class PlaceServiceImpl implements PlaceService, Message {
 
     @Override
     public boolean delete(Place place) {
-        if (daoCRUD.delete(place)){
+        if (daoCRUD.delete(place)) {
             return true;
         } else {
             throw new NotFoundException(DELETE_PLACE_EXCEPTION_MESSAGE);
