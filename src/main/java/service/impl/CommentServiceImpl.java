@@ -77,7 +77,9 @@ public class CommentServiceImpl implements CommentService, Message {
 
         if (dtoList.isEmpty()){
             throw  new NotFoundException(EMPTY_COMMENT_LIST_EXCEPTION_MESSAGE);
-        } return dtoList;
+        }
+
+        return dtoList;
     }
 
     @Override

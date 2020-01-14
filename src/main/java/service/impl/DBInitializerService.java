@@ -32,7 +32,7 @@ public final class DBInitializerService {
     public static void getInstance() {
        try {
         Driver sqlDr= new com.mysql.cj.jdbc.Driver();
-        String mySqlUrl="jdbc:mysql://localhost:3306/";
+        String mySqlUrl="jdbc:mysql://localhost:32771/";
            Connection con=ConnectionManager
                    .getInstance(new DataSource(sqlDr,mySqlUrl,"maryana", "Maryana1234!"))
                    .getConnection();

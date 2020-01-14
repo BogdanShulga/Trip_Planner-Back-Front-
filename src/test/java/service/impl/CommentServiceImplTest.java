@@ -9,6 +9,7 @@ import static org.mockito.Mockito.when;
 import dao.DaoCRUD;
 import dto.CommentDto;
 import entity.Comment;
+import exception.NotFoundException;
 import mapper.CommentMapper;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;

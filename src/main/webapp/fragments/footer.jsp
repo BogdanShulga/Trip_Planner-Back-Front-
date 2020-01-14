@@ -24,5 +24,6 @@
             </div>
         </div>
         <div class="footer-copyright text-center">© 2020 Copyright: MyWebsite.com</div>
+    </div>
 </footer>
 </html>
